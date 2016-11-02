@@ -1,0 +1,49 @@
+ {% extends 'admin/base_admin.html' %}
+ {% block account %}
+	{{account1}}
+	{% endblock %}
+  {% block content %}
+   <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>Create time:{{student.member_add_date}}<h6></em></p>
+  <a class="btn btn-default" href="{% url 'edit_student' pk=student.pk%}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+  <br>
+    <p><em>Student_Photo:</em></p> 
+   <img src="{{ student.photo.url }}" alt="{{student.photo.url}}" width="100" height="100"></img>
+  </div>
+   <br>
+  
+   <h2>Student Account:{{student.account}}
+   <input type="button" id="bt" onclick="javascript:printpage('barCode')" class="save  btn btn-primary"  value="Print" title="Print the ID"/>
+
+   </h2>
+   <p><em>Student_Name:</em>&nbsp&nbsp{{student.name}}</p>
+   <p><em>Student_Password:</em>&nbsp&nbsp******</p>
+   <p><em>Student_Type:</em>&nbsp&nbsp{{student.type}}</p>
+   <p><em>Gender:</em>&nbsp&nbsp{{student.gender}}</p> 
+   <p><em>Student_School:</em>&nbsp&nbsp{{student.school}}</p>
+   <p><em>Student_Major:</em>&nbsp&nbsp{{student.major}}</p>
+   <p><em>Studentr_ClassNo:</em>&nbsp&nbsp{{student.classNo}}</p>
+   <p><em>Student_Tel:</em>&nbsp&nbsp{{student.tel}}</p>
+   <p><em>Student_Debt:</em>&nbsp&nbsp{{student.debt}}</p>
+   <p><em>Student_DueDate:</em>&nbsp&nbsp{{student.dueDate}}</p>
+   <p><em>Student_BookOwning:</em>&nbsp&nbsp{{student.bookOwning}}</p>
+   <p><em>Student_MaxBorrowedBooks:</em>&nbsp&nbsp{{student.maxBorrowedBooks}}</p>
+   <p><em>Student_AvailableDays:</em>&nbsp&nbsp{{student.availableDays}}</p>
+    <div id="barCode" ><img src = 
+  'https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{student.account}}'></img>
+  </div>
+   </div>
+   <hr>
+        <script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    } 
+	</script>
+     {% endblock %}

@@ -1,0 +1,82 @@
+ {% extends 'admin/base_admin.html' %}
+ {% block account %}
+	{{account}}
+	{% endblock %}
+  {% block content %}
+    <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>The students you find:<h6></em></p><p id="record"></p>
+  </div>
+    <!-- 搜索 -->
+  <form action = "/dosearch_studentlist/" method="GET">
+    <table>
+      <thead>
+        <tr>
+		 <th>
+            <select name = "select" class="form-control" style="width:130px;">
+              <option value="1">Account</option>
+              <option value="2">Name</option>
+            </select>
+          </th>
+
+          <th>
+            <input type="text" name = "keyword" class="form-control" autofocus="autofocus">
+          </th>
+
+          <th>
+            <button class="btn  btn-primary btn-block" type="submit" style="width:100px;height=10px">Search</button>
+          </th>
+        </tr>
+      </thead>
+    </table>
+</form>
+
+   <table class="table table-striped table-hover">
+   <thead>
+     <tr>
+	   <th>Number</th>
+       <th>Account</th>
+       <th>Name</th>
+	   <th>School</th>
+       <th>Major</th>
+	   <th>BookOwning</th>
+	   <th>Debt</th>
+	   <th>AddTime</th>
+     </tr>
+   </thead>
+    <tbody id="tab">
+	 {% for student in results %}
+
+     <tr>
+	   <td></td>
+       <td><a href="{% url 'studentlist_detail' account=student.account %}">{{student.account}}</a></td>
+       <td><a href="{% url 'studentlist_detail' account=student.account %}">{{student.name}}</a></td>
+	   <td>{{student.school}}</td>
+       <td>{{student.major}}</td>
+	   <td>{{student.bookOwning}}</td>
+	   <td>{{student.debt}}</td>
+	   <td>{{student.member_add_date}}</td>
+	    {% if student.bookOwning  == 0  and student.debt == 0 %}
+	   <td><a href="{% url 'delete_studentlist' account=student.account %}" onclick="return confirm('Are you sure to delete?')">DELETE</a></td>
+	 {% else %}
+	   <td><a  onclick="return confirm('This student still owns books/Debt is not 0!')">DELETE</a></td>
+	    {% endif %}
+	 </tr>
+
+	 {% endfor %}
+   </tbody>
+
+   </table>
+   <p><font color="red">{{empty_message}}</font></p>
+		<script language="javascript" type="text/javascript">
+window.onload = function(){
+    var oTable = document.getElementById("tab");
+    for(var i=0;i<oTable.rows.length;i++){
+        oTable.rows[i].cells[0].innerHTML = (i+1);
+    }
+   record.innerHTML=oTable.rows.length;
+}
+</script>
+
+{% include 'paginate/paginate.html' %}
+  {% endblock %}

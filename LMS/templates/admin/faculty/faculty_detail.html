@@ -1,0 +1,50 @@
+{% extends 'admin/base_admin.html' %}
+{% block account %}
+ {{account}}
+ {% endblock %}
+ {% block content %}
+  <div class="post">
+  <div class="date text-muted">
+  <p><em><h6>Create time:{{posts.member_add_date}}<h6></em></p>
+ <a class="btn btn-default" href="{% url 'edit_faculty' pk=posts.pk%}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+ <br>
+   <p><em>Faculty_Photo:</em></p>
+
+  <img src="{{ posts.photo.url }}" alt="{{posts.photo.url}}" width="100" height="100"></img>
+ </div>
+  <br>
+
+  <h2>Faculty_Account:{{posts.account}}
+<input type="button" id="bt" onclick="javascript:printpage('barCode')" class="save  btn btn-primary"  value="Print" title="Print the ID"/>
+
+  </h2>
+  <p><em>Faculty_Name:</em>&nbsp&nbsp{{posts.name}}</p>
+  <p><em>Faculty_Password:</em>&nbsp&nbsp******</p>
+  <p><em>Faculty_Type:</em>&nbsp&nbsp{{posts.type}}</p>
+  <p><em>Faculty_Gender:</em>&nbsp&nbsp{{posts.gender}}</p>
+  <p><em>Faculty_Tel:</em>&nbsp&nbsp{{posts.tel}}</p>
+  <p><em>Faculty_School:</em>&nbsp&nbsp{{posts.school}}</p>
+  <p><em>Faculty_BookOwning:</em>&nbsp&nbsp{{posts.bookOwning}}</p>
+  <p><em>Faculty_Debt:</em>&nbsp&nbsp{{posts.debt}}</p>
+  <p><em>Faculty_DueDate:</em>&nbsp&nbsp{{posts.dueDate}}</p>
+  <p><em>Faculty_MaxBorrowedBooks:</em>&nbsp&nbsp{{posts.maxBorrowedBooks}}</p>
+  <p><em>Faculty_availableDays:</em>&nbsp&nbsp{{posts.availableDays}}</p>
+
+ <br>
+  <div id="barCode" ><img src = 
+  'https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{posts.account}}'></img>
+  </div>
+  <hr>
+  </div>
+<script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    } 
+	</script>
+    {% endblock %}

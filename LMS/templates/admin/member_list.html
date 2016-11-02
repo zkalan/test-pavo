@@ -1,0 +1,32 @@
+ {% extends 'admin/base_admin.html' %}
+  {% block content %}
+   <table class="table table-striped table-hover">
+   <thead>
+     <tr>
+       <th>Account</th>
+       <th>Name</th>
+	   <th>Membertype</th>
+	   <th>School</th>
+       <th>ClassNo</th>
+	   <th>Debt</th>
+     </tr>
+   </thead>
+    <tbody>
+	{% for Member in posts %}
+     <tr>
+       <td><a href="{% url 'member_detail' pk=Member.pk%}">{{Member.account}}</a></td>
+       <td><a href="">{{Member.name}}</a></td>
+	   <td>{{Member.memberType}}</td>
+	   <td>{{Member.school}}</td>
+       <td>{{Member.classNo}}</td>
+	   <td>{{Member.debt}}</td>
+	   <td><a href="" onclick="return confirm('Are you sure to delete?')">DELETE</a></td>
+	 </tr>
+	 	   
+	 {% endfor %}
+   </tbody>
+   </table>
+		
+	
+
+  {% endblock %}

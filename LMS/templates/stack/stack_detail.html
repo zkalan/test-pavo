@@ -1,0 +1,49 @@
+{% extends 'stack/base_stack.html' %}
+
+  {% block account %}
+	{{account}}
+	{% endblock %}
+
+
+  {% block content %}
+  
+  {% for result in results  %}
+   <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>Create time:{{result.stack_add_date}}<h6></em></p>
+  <br>
+    <p><em>Stack_Photo:</em></p> 
+   <img src="{{ result.photo.url }}" alt="{{ result.photo.url }}" width="100" height="100"></img>
+  </div>
+   <br>
+   <h2>Stack_Account:{{result.account}}
+ <input type="button" id="bt" onclick="javascript:printpage('barCode')" class="save  btn btn-primary"  value="Print" title="Print the ID"/>
+
+   </h2>
+   <p><em>Stack_Name:</em>&nbsp&nbsp{{result.name}}</p>
+
+   
+   <p><em>Stack_Gender:</em>&nbsp&nbsp{{result.gender}}</p> 
+   <p><em>Stack_Tel:</em>&nbsp&nbsp{{result.tel}}</p>
+    <div id="barCode" ><img src = 
+  'https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{result.account}}'></img>
+  </div>
+ <br>
+  
+ <span style="text-decoration:underline"><a href="{% url 'stackInfoChangePassword' %}"><em>Change Password</em></a></span>
+ <hr>
+   </div>
+
+   {% endfor %}
+          <script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    } 
+	</script>
+     {% endblock %}

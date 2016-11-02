@@ -1,0 +1,28 @@
+ {% extends 'admin/base_admin.html' %}
+  {% block content %}
+   <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>Create time:{{posts.member_add_date}}<h6></em></p>
+  <a class="btn btn-default" href="{% url 'edit_member' pk=posts.pk%}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+  <br>
+    <p><em>Member_Photo:</em></p> 
+   <br>
+   <img src="{{ posts.photo.url }}" alt="{{posts.photo.url}}"></img>
+
+   <hr>
+  </div>
+   <br>
+  
+   <h2>Member Account:{{posts.account}}</h2>
+   <p><em>Member_Name:</em>&nbsp&nbsp{{posts.name}}</p>
+   <p><em>Member_Password:</em>&nbsp&nbsp{{posts.password}}</p>
+   <p><em>MemberType:</em>&nbsp&nbsp{{posts.memberType}}</p>
+   <p><em>Gender:</em>&nbsp&nbsp{{posts.gender}}</p> 
+   <p><em>Member_School:</em>&nbsp&nbsp{{posts.school}}</p>
+   <p><em>Member_ClassNo:</em>&nbsp&nbsp{{posts.classNo}}</p>
+   <p><em>Member_Tel:</em>&nbsp&nbsp{{posts.tel}}</p>
+   <p><em>Member_Debt:</em>&nbsp&nbsp{{posts.debt}}</p>
+ 
+   </div>
+   <hr>
+     {% endblock %}

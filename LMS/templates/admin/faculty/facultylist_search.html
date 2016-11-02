@@ -1,0 +1,77 @@
+ {% extends 'admin/base_admin.html' %}
+ {% block account %}
+	{{account}}
+	{% endblock %}
+  {% block content %}
+    <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>The faculties you find:<h6></em></p><p id="record"></p>
+  </div>
+    <!-- 搜索 -->
+  <form action = "/dosearch_facultylist/" method="GET">
+    <table>
+      <thead>
+        <tr>
+		 <th>
+            <select name = "select" class="form-control" style="width:130px;">
+              <option value="1">Account</option>
+              <option value="2">Name</option>
+            </select>
+          </th>
+
+          <th>
+            <input type="text" name = "keyword" class="form-control" autofocus="autofocus">
+          </th>
+
+          <th>
+            <button class="btn  btn-primary btn-block" type="submit" style="width:100px;height=10px">Search</button>
+          </th>
+        </tr>
+      </thead>
+    </table>
+</form>
+
+   <table class="table table-striped table-hover">
+   <thead>
+     <tr>
+	   <th>Number</th>
+       <th>Account</th>
+       <th>Name</th>
+	   <th>BookOwning</th>
+	   <th>Debt</th>
+	   <th>AddTime</th>
+     </tr>
+   </thead>
+    <tbody id="tab">
+	 {% for faculty in results %}
+ 
+     <tr>
+	   <td></td>
+       <td><a href="{% url 'facultylist_detail' account=faculty.account%}">{{faculty.account}}</a></td>
+       <td><a href="{% url 'facultylist_detail' account=faculty.account%}">{{faculty.name}}</a></td>
+	   <td>{{faculty.bookOwning}}</td>
+	    <td>{{faculty.debt}}</td>
+	   <td>{{faculty.member_add_date}}</td>
+	   {% if faculty.bookOwning  == 0 and faculty.debt = 0 %}
+	   <td><a href="{% url 'delete_facultylist' account=faculty.account %}" onclick="return confirm('Are you sure to delete?')">DELETE</a></td>
+	 {% else %}
+	   <td><a  onclick="return confirm('This faculty still owns books/Debt is not 0!')">DELETE</a></td>
+	    {% endif %}
+	 </tr>
+
+	 {% endfor %}
+   </tbody>
+   </table>
+   <p><font color="red">{{empty_message}}</font></p>
+<script language="javascript" type="text/javascript">
+window.onload = function(){
+    var oTable = document.getElementById("tab");
+    for(var i=0;i<oTable.rows.length;i++){
+        oTable.rows[i].cells[0].innerHTML = (i+1);
+    }
+   record.innerHTML=oTable.rows.length;
+}
+</script>
+
+{% include 'paginate/paginate.html' %}
+  {% endblock %}

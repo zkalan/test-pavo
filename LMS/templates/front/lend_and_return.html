@@ -1,0 +1,105 @@
+  
+  {% extends 'front/base_front.html' %}
+  {% block account %}
+	{{account}}
+	{% endblock %}
+  {% block content %}
+
+  
+	{% if isReturnBook %}
+		<h1 class="page-header">Return Book</h1>
+	{% else %}
+		<h1 class="page-header">Lend Book</h1>
+	{% endif %}
+  
+		<div style = "height:60px" >
+			<form method="POST" class="form-inline">{% csrf_token %}
+				
+				{% for field in bookForm %}
+					<div class="form-group">
+					{{field}}
+					<div class="has-error">
+					<label class="control-label" for="inputError">         
+						{{field.errors}}
+					</label>
+					</div>
+					</div>
+				{% endfor %}
+				<div class="form-group">
+					<button type="submit" name="OK" value="False" class="save btn btn-primary">Confirm</button>
+				</div>
+				
+			</form>
+		 </div>
+		
+		<script language="javascript" type="text/javascript">
+			function setFocus(){
+				document.getElementById('bookId').focus();
+				document.getElementById('memberId').focus();
+			}
+		 </script>
+		
+		{% if isReturnBook %}
+			<table class="table table-striped table-bordered templatemo-user-table">
+		   <thead>
+			  <tr>
+				<td><a href="" class="white-text templatemo-sort-by">Transaction ID <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">Book Name <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">Book ID <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">User Name <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">User Debt <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">due time  <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">return time  <span class="caret"></span></a></td>	
+			  </tr>
+			</thead>
+			<tbody>
+			{% for curPageRecord in curPageRecords %}
+			  <tr>
+				<td>{{curPageRecord.id}}</td>
+				<td>{{curPageRecord.bookOnShelf.bookInfo.title}}</td>
+				<td>{{curPageRecord.bookOnShelf.bookId}}</td>
+				<td>{{curPageRecord.member.name}}</td>
+				<td>{{curPageRecord.member.debt}}</td>
+				<td>{{curPageRecord.dueTime}}</td>
+				<td>{{curPageRecord.returnedTime}}</td>
+			  </tr>
+			 {% endfor %}
+			</tbody>
+		  </table>
+		{% else %}
+		
+		  <table class="table table-striped table-bordered templatemo-user-table">
+		   <thead>
+			  <tr>
+				<td><a href="" class="white-text templatemo-sort-by">Transaction ID <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">Book Name <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">Book ID <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">User Name <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">lend time <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">due time <span class="caret"></span></a></td>	
+			  </tr>
+			</thead>
+			<tbody>
+			{% for curPageRecord in curPageRecords %}
+			  <tr>
+				<td>{{curPageRecord.id}}</td>
+				<td>{{curPageRecord.bookOnShelf.bookInfo.title}}</td>
+				<td>{{curPageRecord.bookOnShelf.bookId}}</td>
+				<td>{{curPageRecord.member.name}}</td>
+				<td>{{curPageRecord.borrowedTime}}</td>
+				<td>{{curPageRecord.dueTime}}</td>
+			  </tr>
+			 {% endfor %}
+			</tbody>
+		  </table>
+
+		{% endif %}
+		
+		
+	
+	{% include 'paginate/paginate.html' %}
+	
+	
+
+{% endblock %}
+

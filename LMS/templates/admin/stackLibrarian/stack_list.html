@@ -1,0 +1,67 @@
+ {% extends 'admin/base_admin.html' %}
+ {% block account %}
+	{{account}}
+	{% endblock %}
+  {% block content %}
+  <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>The stack librarians you find:<h6></em></p><p id="record"></p>
+  </div>
+    <!-- 搜索 -->
+  <form action = "/dosearch_stacklist/" method="GET">
+    <table>
+      <thead>
+        <tr>
+		 <th>
+            <select name = "select" class="form-control" style="width:130px;">
+              <option value="1">Account</option>
+              <option value="2">Name</option>
+            </select>
+          </th>
+
+          <th>
+            <input type="text" name = "keyword" class="form-control" autofocus="autofocus">
+          </th>
+
+          <th>
+            <button class="btn  btn-primary btn-block" type="submit" style="width:100px;height=10px">Search</button>
+          </th>
+        </tr>
+      </thead>
+    </table>
+</form>
+
+   <table class="table table-striped table-hover">
+   <thead>
+     <tr>
+	   <th>Number</th>
+       <th>Account</th>
+       <th>Name</th>
+	   <th>AddTime</th>
+     </tr>
+   </thead>
+    <tbody id="tab">
+	{% for StackLibrarian in posts %}
+     <tr>
+	   <td></td>
+       <td><a href="{% url 'stack_detail' pk=StackLibrarian.pk %}">{{StackLibrarian.account}}</a></td>
+       <td><a href="{% url 'stack_detail' pk=StackLibrarian.pk %}">{{StackLibrarian.name}}</a></td>
+	   <td>{{StackLibrarian.stack_add_date}}</td>
+	   <td><a href="{% url 'delete_stack' pk=StackLibrarian.pk %}" onclick="return confirm('Are you sure to delete?')">DELETE</a></td>
+	 </tr>
+
+	 {% endfor %}
+   </tbody>
+   </table>
+<script language="javascript" type="text/javascript">
+window.onload = function(){
+    var oTable = document.getElementById("tab");
+    for(var i=0;i<oTable.rows.length;i++){
+        oTable.rows[i].cells[0].innerHTML = (i+1);
+    }
+   record.innerHTML=oTable.rows.length;
+}
+</script>
+
+{% include 'paginate/paginate.html' %}
+  {% endblock %}

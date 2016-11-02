@@ -1,0 +1,40 @@
+ {% extends 'admin/base_admin.html' %}
+ {% block account %}
+	{{account1}}
+	{% endblock %}	
+  {% block content %}
+   <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>Create time:{{front.front_add_date}}<h6></em></p>
+  <a class="btn btn-default" href="{% url 'edit_front' pk=front.pk%}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+  <br>
+    <p><em>FrontDeskLibrarian_Photo:</em></p> 
+   <img src="{{ front.photo.url }}" alt="{{front.photo.url}}" width="100" height="100"></img>
+  </div>
+   <br>
+  
+   <h2>FrontDeskLibrarian_Account:{{front.account}}
+ <input type="button" id="bt" onclick="javascript:printpage('barCode')" class="save  btn btn-primary"  value="Print" title="Print the ID"/>
+
+   </h2>
+   <p><em>FrontDeskLibrarian_Name:</em>&nbsp&nbsp{{front.name}}</p>
+   <p><em>FrontDeskLibrarian_Password:</em>&nbsp&nbsp******</p>
+   <p><em>FrontDeskLibrarian_Gender:</em>&nbsp&nbsp{{front.gender}}</p> 
+   <p><em>FrontDeskLibrarian_Tel:</em>&nbsp&nbsp{{front.tel}}</p>
+ <div id="barCode" ><img src = 
+  'https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{front.account}}'></img>
+  </div>
+  <hr>
+   </div>
+<script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    } 
+	</script>
+     {% endblock %}

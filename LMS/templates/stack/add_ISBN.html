@@ -1,0 +1,159 @@
+ {% extends 'stack/base_stack.html' %}
+	{% block account %}
+	{{account}}
+	{% endblock %}
+   {% block content %}
+   <form action="/search_stack/" method="get">
+    <div class="form-group">
+    <label>ISBN</label>
+	<input type="text" class="form-control" autofocus="autofocus" name="q" placeholder="Enter ISBN" 
+	onchange="if(/\D/.test(this.value)){
+	alert('Please enter number!');
+	this.value='';}
+	if(this.value.length > 13){
+	alert('ISBN is too long!');
+	this.value='';}
+	">
+	<p><font color="red">{{message}}</font></p>
+     </div>
+    <button type="submit" value="Search" class="save btn btn-primary">SEARCH</button>
+   </form>
+
+  <hr>
+
+  <form enctype="multipart/form-data" action="/getInfo_stack/" method="post" onsubmit="return checkform()">
+    {% csrf_token %}
+
+  <div class="form-group">
+    <label>ISBN-13</label>
+    <input type="text" class="form-control" value="{{isbn13}}" name="isbn13">
+  </div>
+
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" value="{{title}}" name="title">
+  </div>
+  <div class="form-group">
+    <label>Author</label>
+    <input type="text" class="form-control" value="{{author}}" name="author">
+  </div>
+   <div class="form-group">
+    <label>Translator</label>
+    <input type="text" class="form-control" value="{{translator}}" name="translator">
+  </div>
+  <div class="form-group">
+    <label>Publisher</label>
+    <input type="text" class="form-control"  value="{{publisher}}" name="publisher">
+  </div>
+   <div class="form-group">
+    <label>Publish Date</label>
+    <input type="text" class="form-control" value="{{pubdate}}" name="pubdate">
+  </div>
+   <div class="form-group">
+    <label>Price</label>
+    <input type="text" class="form-control"  value="{{price}}" name="price">
+  </div>
+  <div class="form-group">
+    <label>Pages</label>
+    <input type="text" class="form-control"  value="{{pages}}" name="pages">
+  </div>
+   <div class="form-group">
+    <label>Images_large</label>
+	<br>
+    <img src="{{images_large}}" name="image_large">
+	<br>
+	 <input type="text" class="form-control"  value="{{images_large}}" name="images_large_url" style="visibility:hidden">
+  </div>
+  <div class="form-group">
+    <label>Summary</label>
+    <textarea type="text" class="form-control" rows="6" name="summary">
+	{{summary}}
+	</textarea>
+  </div>
+
+ 
+   <div class="form-group">
+    <label>CatagoryName</label>
+     <select name = "catagoryName" class="form-control">
+              <option value="Class A – General Works">Class A – General Works</option>
+              <option value="Class B – Philosophy, Psychology, Religion">Class B – Philosophy, Psychology, Religion</option>
+              <option value="Class C – Auxiliary Sciences of History (General)">Class C – Auxiliary Sciences of History (General)</option>
+              <option value="Class D – World History (except American History)">Class D – World History (except American History)</option>
+              <option value="Class E – American History">Class E – American History</option>
+              <option value="Class F – Local History of the United States and British, Dutch, French, and Latin America">Class F – Local History of the United States and British, Dutch, French, and Latin America</option>
+              <option value="Class G – Geography, Anthropology, Recreation">Class G – Geography, Anthropology, Recreation</option>
+              <option value="Class H – Social Sciences">Class H – Social Sciences</option>
+              <option value="Class J – Political Science">Class J – Political Science</option>
+              <option value="Class K – Law">Class K – Law</option>
+              <option value="Class L – Education">Class L – Education</option>
+              <option value="Class M – Music">Class M – Music</option>
+              <option value="Class N – Fine Arts">Class N – Fine Arts</option>
+              <option value="Class P – Language and Literature">Class P – Language and Literature</option>
+              <option value="Class Q – Science">Class Q – Science</option>
+              <option value="Class R – Medicine">Class R – Medicine</option>
+              <option value="Class S – Agriculture">Class S – Agriculture</option>
+              <option value="Class T – Technology">Class T – Technology</option>
+              <option value="Class U – Military Science">Class U – Military Science</option>
+              <option value="Class V – Naval Science">Class V – Naval Science</option>
+              <option value="Class Z – Bibliography, Library Science">Class Z – Bibliography, Library Science</option>
+
+   </select>
+  </div>
+
+    <div class="form-group">
+    <label>Floor</label>
+      <select name = "floor" class="form-control">
+              <option value="1L">1L</option>
+              <option value="2L">2L</option>
+              <option value="3L">3L</option>
+              <option value="4L">4L</option>
+              <option value="5L">5L</option>
+    </select>
+  </div>
+      <div class="form-group">
+    <label>Area</label>
+    <select name = "area" class="form-control">
+              <option value="East">East</option>
+              <option value="South">South</option>
+              <option value="West">West</option>
+              <option value="North">North</option>
+    </select>
+  </div>
+
+    <div class="form-group">
+    <label>Book Number</label>
+
+    <input  type="text" class="form-control"  value="" id="booknum" name="bookNumber" onkeyup="value=value.replace(/[^\d]/g,'')"
+     onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+
+  </div>
+
+
+  <button type="submit"  class="save btn btn-primary">ADD</button>
+
+  </form>
+
+<script type="text/javascript">
+
+        function checkform(){
+          if(parseInt(document.getElementById("booknum").value) == 0){
+
+            alert('Book number is not effective');
+
+            return false;
+          }
+         if( parseInt(document.getElementById("booknum").value) > 10){
+            alert('The book number must be no more than 10');
+            return false;
+          }
+		  if(document.getElementById("booknum").value == ""){    
+            
+            alert('Book number is not effective');
+
+            return false;
+          }
+          return true;
+        }
+</script>
+
+{% endblock %}

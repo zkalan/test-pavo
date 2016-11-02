@@ -1,0 +1,100 @@
+  {% extends 'member/base_member.html' %}
+  
+	{% block accounttype %}
+		{{accounttype}}
+	{% endblock %}
+
+	{% block account %}
+		{{account}}
+	{% endblock %}
+
+	
+  {% block content %}
+	
+	<h1 class="page-header">My Activity</h1>
+	
+	<!-- 头像，太大了，放弃 -->
+	<!-- <div class="date text-muted">
+		<img src="{{ member.photo.url }}" alt="{{member.photo.url}}" height="100"></img>
+	</div> -->
+		
+		{% if currentBorrows %}
+			<h3>Current Borrow</h3>
+			<table class="table table-striped table-bordered templatemo-user-table">
+		   <thead>
+			  <tr>
+				<td><a href="" class="white-text templatemo-sort-by">ISBN <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">Book Name <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">Author <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">CatagoryName <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">PublisherName <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">BorrowTime <span class="caret"></span></a></td>
+				<td><a href="" class="white-text templatemo-sort-by">DueTime <span class="caret"></span></a></td>
+				
+			  </tr>
+			</thead>
+			<tbody>
+			{% for currentBorrow in currentBorrows %}
+			  <tr>
+				<td>{{currentBorrow.bookOnShelf.bookInfo.ISBN}}</td>
+				<td>{{currentBorrow.bookOnShelf.bookInfo.title}}</td>
+				<td>{{currentBorrow.bookOnShelf.bookInfo.author}}</td>
+				<td>{{currentBorrow.bookOnShelf.bookInfo.catagory.name}}</td>
+				<td>{{currentBorrow.bookOnShelf.bookInfo.publishingHouse.name}}</td>				
+				<td>{{currentBorrow.borrowedTime}}</td>
+				<td>{{currentBorrow.dueTime}}</td>
+			  </tr>
+			 {% endfor %}
+			</tbody>
+		  </table>
+		  
+		 {% else %}
+		  <center><h1><small>Current have not lend book</small></h1></center>
+		{% endif %}
+		
+		<hr>
+		
+		
+		{% if historyBorrows %}
+			<h3>History Borrow</h3>
+			  <table class="table table-striped table-bordered templatemo-user-table">
+			   <thead>
+				  <tr>
+					<td><a href="" class="white-text templatemo-sort-by">ISBN <span class="caret"></span></a></td>
+					<td><a href="" class="white-text templatemo-sort-by">Book Name <span class="caret"></span></a></td>
+					<td><a href="" class="white-text templatemo-sort-by">Author <span class="caret"></span></a></td>
+					<td><a href="" class="white-text templatemo-sort-by">CatagoryName <span class="caret"></span></a></td>
+					<td><a href="" class="white-text templatemo-sort-by">PublisherName <span class="caret"></span></a></td>
+					<td><a href="" class="white-text templatemo-sort-by">BorrowTime <span class="caret"></span></a></td>
+					<td><a href="" class="white-text templatemo-sort-by">ReturnTime <span class="caret"></span></a></td>	
+				  </tr>
+				</thead>
+				<tbody>
+				{% for historyBorrow in historyBorrows %}
+				  <tr>
+					<td>{{historyBorrow.bookOnShelf.bookInfo.ISBN}}</td>
+					<td>{{historyBorrow.bookOnShelf.bookInfo.title}}</td>
+					<td>{{historyBorrow.bookOnShelf.bookInfo.author}}</td>
+					<td>{{historyBorrow.bookOnShelf.bookInfo.catagory.name}}</td>
+					<td>{{historyBorrow.bookOnShelf.bookInfo.publishingHouse.name}}</td>				
+					<td>{{historyBorrow.borrowedTime}}</td>
+					<td>{{historyBorrow.returnedTime}}</td>
+				  </tr>
+				 {% endfor %}
+				</tbody>
+			  </table>
+			  
+			  
+		{% include 'paginate/paginate.html' %}
+			  
+			  
+			{% else %}		 
+				  <center><h1><small>History had not lend book</small></h1></center>
+		{% endif %}
+		  
+		  
+		
+	
+	
+{% endblock %}
+

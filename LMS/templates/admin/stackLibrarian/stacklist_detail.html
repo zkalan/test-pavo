@@ -1,0 +1,39 @@
+ {% extends 'admin/base_admin.html' %}
+ {% block account %}
+	{{account1}}
+	{% endblock %}
+  {% block content %}
+   <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>Create time:{{stack.stack_add_date}}<h6></em></p>
+  <a class="btn btn-default" href="{% url 'edit_stack' pk=stack.pk%}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+  <br>
+    <p><em>StackLibrarian_Photo:</em></p> 
+   <img src="{{ stack.photo.url }}" alt="{{stack.photo.url}}" width="100" height="100"></img>
+  </div>
+   <br>
+  
+   <h2>StackLibrarian_Account:{{stack.account}}
+      <input type="button" id="bt" onclick="javascript:printpage('barCode')" class="save  btn btn-primary"  value="Print" title="Print the ID"/>
+   </h2>
+   <p><em>StackLibrarian_Name:</em>&nbsp&nbsp{{stack.name}}</p>
+   <p><em>StackLibrarian_Password:</em>&nbsp&nbsp******</p>
+   <p><em>StackLibrarian_Gender:</em>&nbsp&nbsp{{stack.gender}}</p> 
+   <p><em>StackLibrarian_Tel:</em>&nbsp&nbsp{{stack.tel}}</p>
+ <div id="barCode" ><img src = 
+  'https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{stack.account}}'></img>
+  </div>
+   <hr>
+   </div>
+<script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    } 
+	</script>
+     {% endblock %}

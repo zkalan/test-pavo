@@ -1,0 +1,47 @@
+ {% extends 'stack/base_stack.html' %}
+ 
+  {% block account %}
+	{{account}}
+  {% endblock %}
+ 
+  {% block content %}
+   <div class="post">
+   <div class="date text-muted">
+   <p><em><h6>Create time:{{posts.book_add_date}}<h6></em></p>
+  <a class="btn btn-default" href="{% url 'edit_book_stack' pk=posts.pk %}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+  </div>
+   <br>
+  
+   <h2>BOOK_ID:{{posts.bookId}}
+           <input type="button" id="bt" onclick="javascript:printpage('barCode')" class="save  btn btn-primary"  value="Print" title="Print the ID"/>
+   </h2>
+   <p><em>BOOK_TITLE:</em>&nbsp&nbsp{{posts.bookInfo.title}}</p>
+   <p><em>CATAGORYID:</em>&nbsp&nbsp {{posts.bookInfo.catagory.catagoryId}}&nbsp&nbsp<em>CATAGORY:</em>&nbsp&nbsp{{posts.bookInfo.catagory.name}}</p>
+   <p><em>BOOK_LOCATIONID:</em>&nbsp&nbsp{{posts.bookLocation.locationId}}</p>
+   <p><em>FLOOR:</em>&nbsp&nbsp{{posts.bookLocation.floor}}&nbsp <em>AREA:</em>&nbsp&nbsp {{posts.bookLocation.area}}</p>
+   <p><em>BOOK_STATE:</em>&nbsp&nbsp{{posts.state}}</p>
+   <p><em>BOOK_AUTHOR:</em>&nbsp&nbsp{{posts.bookInfo.author}}</p>
+   <p><em>BOOK_PUBLISHERID:</em>&nbsp&nbsp{{posts.bookInfo.publishingHouse.publisherId}}</p> 
+   <p><em>BOOK_PUBLISHER:</em>&nbsp&nbsp{{posts.bookInfo.publishingHouse.name}}</p> 
+   <p><em>BOOK_ISBN:</em>&nbsp&nbsp{{posts.bookInfo.ISBN}}</p>
+   <p><em>BOOK_PHOTO:</em></p> 
+   <img src="{{ posts.bookInfo.book_image_URL }}" alt="{{posts.bookInfo.book_image_URL}}" ></img>
+   <p><em>BOOK_SUMMARY:</em>&nbsp&nbsp{{posts.bookInfo.introducton}}</p>
+   
+     <div id="barCode" ><img src = 
+  'https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{posts.bookId}}'></img>
+  </div>
+   <hr>
+   </div>
+     <script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    } 
+	</script>
+     {% endblock %}

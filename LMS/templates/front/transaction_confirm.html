@@ -1,0 +1,75 @@
+ {% extends 'front/base_front.html' %}
+ 
+  {% block account %}
+	{{account}}
+  {% endblock %}
+ 
+  {% block content %}
+  
+  	{% if isReturn %}
+		<h1 class="page-header">Return Book</h1>
+	{% else %}
+		<h1 class="page-header">Lend Book</h1>
+	{% endif %}
+  
+  
+
+  
+  
+		<div style = "height:60px" >
+			<form method="POST" class="form-inline" readonly="true">{% csrf_token %}
+				
+				{% for field in bookForm %}
+					<div class="form-group">
+					{{field}}
+					<div class="has-error">
+					<label class="control-label" for="inputError">         
+						{{field.errors}}
+					</label>
+					</div>
+					</div>
+				{% endfor %}
+				<script type="text/javascript">
+					window.onload = function(){
+						document.getElementById('OK').focus();
+						var bookId = document.getElementById("bookId");
+						bookId.setAttribute("readOnly",true);
+						bookId.style.backgroundColor="#d2d2d2";
+						var memberId = document.getElementById("memberId");
+						memberId.setAttribute("readOnly",true);
+						memberId.style.backgroundColor="#d2d2d2";
+					}
+				</script>
+
+				<div class="form-group">
+					<button id="OK" type="submit" name="OK" value="True" class="save btn btn-primary" style="padding-left:20px;padding-right:20px">OK</button>
+					<a href="" type="button"  class="save btn btn-warning" style="margin-left:60px">Cancel</a>
+				</div>
+			</form>
+			
+		 </div>
+  
+	<div class="row w">
+		<div class="col-md-6">
+		   
+		   <img src="{{ book.bookInfo.book_image_URL }}" alt="{{book.bookInfo.book_image_URL}}"></img>
+		   <p><em>ID:</em>&nbsp&nbsp{{book.bookId}}</p>
+		   <p><em>TITLE:</em>&nbsp&nbsp{{book.bookInfo.title}}</p>
+		   <p><em>AUTHOR:</em>&nbsp&nbsp{{book.bookInfo.author}}</p>
+		   <p><em>PUBLISHER:</em>&nbsp&nbsp{{book.bookInfo.publishingHouse.name}}</p> 
+		   <p><em>ISBN:</em>&nbsp&nbsp{{book.bookInfo.ISBN}}</p>
+		</div>
+		
+	   <div class="col-md-4">
+	   <img src="{{member.photo.url}}" alt="{{member.photo.url}}" width="200" height="200"></img>
+	   <h4>Lend Account:{{member.account}}</h4>
+	   <p><em>Name:</em>&nbsp&nbsp{{member.name}}</p>
+	   <p><em>Gender</em>&nbsp&nbsp{{member.gender}}</p>
+	   <p><em>Debt:</em>&nbsp&nbsp{{member.debt}}</p>
+	   <p><em>BookOwning:</em>&nbsp&nbsp{{member.bookOwning}}</p>
+	   <p><em>AvailableDays:</em>&nbsp&nbsp{{member.availableDays}}</p>
+	   </div>
+	   <hr>
+	</div>
+	
+	{% endblock %}

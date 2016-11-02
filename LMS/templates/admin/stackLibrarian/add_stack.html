@@ -1,0 +1,35 @@
+{% extends 'admin/base_admin.html' %}
+{% block account %}
+	{{account}}
+	{% endblock %}
+  {% block content %}
+  <h1>New/Edit StackLibrarian</h1>
+              <form enctype="multipart/form-data" action="" method="post" onsubmit = "return checkform()">
+		    {% csrf_token %}
+       {{ form.as_p }}
+   <button type="submit" class="save btn btn-primary"onclick="var id_tel=document.getElementById('id_tel'); 
+if(!/^\d+$/.test(id_tel.value)) 
+{alert('Tel must be number!');id_tel.value='';}" >
+Save</button>
+        </form>
+
+				<script language="javascript" type="text/javascript">
+         function setFocus(){
+          document.getElementById('id_account').focus();
+
+        }
+        </script>
+
+
+<script language="javascript" type="text/javascript">
+function checkform(){
+ if (document.getElementById('id_account').value.indexOf(" ")!= -1)
+{
+			 alert('Account cannot contain spacing!');
+			 document.getElementById('id_account').value = '';
+
+			 return false;
+}
+}
+</script>
+  {% endblock %}

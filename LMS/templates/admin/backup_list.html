@@ -1,0 +1,56 @@
+ {% extends 'admin/base_admin.html' %}
+
+{% block account %}{{account}}{% endblock %}
+
+
+  {% block content %}
+
+  <h1 class="page-header">Backup/Restore</h1>
+  <input type="button" value="BACKUP" class="save btn btn-primary" onclick="if(confirm('Are you sure to Backup?'))return false,location='{% url 'backup' %}'">
+  <br>
+   <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+            <th>OPERATOR</th>
+            <th>FILENAME</th>
+            <th>OPERATION TIME</th>
+            <th>FILESIZE</th>
+            <th>LOCATION</th>
+            <th>RESTORE</th>
+            <th>DELETE</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% if records %}
+            {% for BackupRecords in records %}
+            <tr>
+             <td>{{BackupRecords.operator.account}}</td>
+             <td>{{BackupRecords.fileName}}</td>
+             <td>{{BackupRecords.operateTime}}</td>
+             <td>{{BackupRecords.fileSize}}KB</td>
+             <td>{{BackupRecords.location}}</td>
+             <td><a onclick="if(!confirm('Are you sure to Restore?'))return false" href="{% url 'restore' pk=BackupRecords.recordId %}" >RESTORE</a></td>
+             <td><a onclick="if(!confirm('Are you sure to Delete?'))return false" href="{% url 'delete' pk=BackupRecords.recordId %}" >DELETE</a></td>
+            {% if flag %}
+              
+            {% else %}
+              
+            {% endif %}
+           </tr>
+            {% endfor %}
+          {% else %}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><center><b>no record</b></center></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+          {% endif %}
+          </tbody>
+   </table>
+{% include 'paginate/paginate.html' %}
+     {% endblock %}

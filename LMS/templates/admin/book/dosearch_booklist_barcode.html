@@ -1,0 +1,32 @@
+{% extends 'stack/searchResults.html' %} 
+
+{% block content %}
+<div style="margin:0 auto; width:600px;border: 1px solid #000099;text-align:center;">
+	<b>Print Preview</b>
+</div>
+<div id="bar" style="margin:2px auto; width:600px;">
+	<div id="barCode" style="padding-bottom:10px;border-bottom:1px solid #000000;text-align:center;margin:0px auto; width:100%;">
+        {% for value in values %}
+		<div style="align:center;width:100%;margin:4px 0 0 0;">
+			<img src="https://www.zkalan.cn/barcode/html/image.php?filetype=PNG&dpi=300&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&thickness=45&checksum=&code=BCGcode39&text={{value}}">
+		</div>
+        {% endfor %}
+	</div>
+	<div style="margin-top:10px;text-align:right;position:relative;align:left;width:100%;">
+		<input type="button" id="bt" onclick="javascript:history.back(-1);"   value="Cancel" class="btn btn-primary" />
+		<input type="button" id="bt" onclick="javascript:printpage('barCode')"   value="Print" class="btn btn-primary"/>
+	</div>
+</div>
+<script language="javascript" type="text/javascript">
+    function printpage(barCode){    
+    //var newstr = document.all.item(barCode).innerHTML; 
+    var newstr = document.getElementById(barCode).innerHTML;
+    var oldstr = document.body.innerHTML; 
+    document.body.innerHTML = newstr; 
+    window.print(); 
+    document.body.innerHTML = oldstr; 
+    return false; 
+    }
+</script>
+
+{% endblock %}

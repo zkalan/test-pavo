@@ -1,0 +1,9 @@
+ {% extends 'admin/base_admin.html' %}
+  {% block content %}
+  <h1>New/Edit Member</h1>
+        <form enctype="multipart/form-data" action="" method="post">  
+		    {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-primary">Save</button>
+        </form>
+  {% endblock %}

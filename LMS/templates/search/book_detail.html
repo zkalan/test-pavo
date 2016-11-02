@@ -1,0 +1,57 @@
+{% extends 'search/searchResults.html' %}
+
+
+{% block content %}
+
+<div class="post">
+   <br>
+  
+   <h2>BOOK_TITLE:{{bookInfo.title}}</h2>
+
+   <p><em>BOOK_ISBN:</em>&nbsp&nbsp{{bookInfo.ISBN}}</p>
+   <p><em>CATAGORYID:</em>&nbsp&nbsp {{bookInfo.catagory.catagoryId}}&nbsp&nbsp<em>CATAGORY:</em>&nbsp&nbsp{{bookInfo.catagory.name}}</p>
+   <p><em>BOOK_AUTHOR:</em>&nbsp&nbsp{{bookInfo.author}}</p>
+   <p><em>BOOK_PUBLISHER:</em>&nbsp&nbsp{{bookInfo.publishingHouse.name}}</p> 
+
+   <p><em>BOOK_PHOTO:</em></p> 
+   <img src="{{ bookInfo.book_image_URL }}" alt="{{bookInfo.book_image_URL}}" ></img>
+
+   <br>
+   <p><em>BOOK_SUMMARY:</em>&nbsp&nbsp{{bookInfo.introducton }}</p>
+   
+   <hr>
+   </div>
+
+<div>
+    <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Book_ID</th>
+                    <th>Title</th>
+                    <th>Location</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            
+	        <tbody id="tab">
+
+	        {% for book in results %}
+                <tr>
+                    <td>{{book.bookId}}</td>
+                    <td>{{bookInfo.title}}</td>
+                    <td>{{book.location}}</td>
+                    <td>{{book.state}}</td>
+
+                    <!--<td>
+                        {% if book.state == 'in' %} in {% else %} out {% endif %}
+                    </td>-->
+                </tr>
+           
+            {% endfor %} 
+			 </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

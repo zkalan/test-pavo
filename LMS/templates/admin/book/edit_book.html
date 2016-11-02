@@ -1,0 +1,219 @@
+ {% extends 'admin/base_admin.html' %}
+ 
+  {% block account %}
+	{{account}}
+  {% endblock %}
+  
+  {% block content %}
+  <h1>New/Edit Book</h1>
+        <form enctype="multipart/form-data" action="/edit_book_admin/" method="post" onsubmit = "return checkform()">  
+		<p><em>BookID:</em>&nbsp&nbsp{{post.bookId}}</p>
+		    {% csrf_token %}
+            {{ form.as_p }}
+<form enctype="multipart/form-data" action="" method="post" >
+    {% csrf_token %}
+<p><em>Book_ISBN:</em>&nbsp&nbsp{{post.bookInfo.ISBN}}</p>
+
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" value="{{post.bookInfo.title}}" name="title">
+  </div>
+  <div class="form-group">
+    <label>Author</label>
+    <input type="text" class="form-control" value="{{post.bookInfo.author}}" name="author">
+  </div>
+ <p><em>Book_Publisher:</em>&nbsp&nbsp{{post.bookInfo.publishingHouse.name}}</p>
+   <div class="form-group">
+    <label>Images_large</label>
+	<br>
+    <img src="{{post.bookInfo.book_image_URL}}" name="image_large">
+	<br>
+	
+  </div>
+  <div class="form-group">
+    <label>Summary</label>
+    <textarea type="text" class="form-control" rows="6" name="summary">
+	{{post.bookInfo.introducton}}
+	</textarea>
+  </div>
+ 
+   <div class="form-group">
+    <label>CatagoryName({{post.bookInfo.catagory.name}})</label>
+    <select name = "catagoryName" class="form-control" id = "sel">
+			{% if post.bookInfo.catagory.name == "Class A – General Works"%}
+              <option value="Class A – General Works" selected = "selected">Class A – General Works</option>
+			  {% else %}
+			   <option value="Class A – General Works">Class A – General Works</option>
+			   {% endif %}
+			   
+			   {% if post.bookInfo.catagory.name == "Class B – Philosophy, Psychology, Religion"%}
+              <option value="Class B – Philosophy, Psychology, Religion" selected = "selected">Class B – Philosophy, Psychology, Religion</option>
+			  {% else %}
+			   <option value="Class B – Philosophy, Psychology, Religion">Class B – Philosophy, Psychology, Religion</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class C – Auxiliary Sciences of History (General)"%}
+              <option value="Class C – Auxiliary Sciences of History (General)" selected = "selected">Class C – Auxiliary Sciences of History (General)</option>
+			  {% else %}
+			  <option value="Class C – Auxiliary Sciences of History (General)" >Class C – Auxiliary Sciences of History (General)</option>
+			   {% endif %}
+			  
+              {% if post.bookInfo.catagory.name == "Class D – World History (except American History)"%}
+			  <option value="Class D – World History (except American History)" selected = "selected">Class D – World History (except American History)</option>
+			  {% else %}
+			   <option value="Class D – World History (except American History)">Class D – World History (except American History)</option>
+			    {% endif %}
+				{% if post.bookInfo.catagory.name == "Class E – American History"%}
+              <option value="Class E – American History" selected = "selected">Class E – American History</option>
+			  {% else %}
+			   <option value="Class E – American History">Class E – American History</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class F – Local History of the United States and British, Dutch, French, and Latin America"%}
+              <option value="Class F – Local History of the United States and British, Dutch, French, and Latin America" selected = "selected">Class F – Local History of the United States and British, Dutch, French, and Latin America</option>
+			  {% else %}
+			    <option value="Class F – Local History of the United States and British, Dutch, French, and Latin America">Class F – Local History of the United States and British, Dutch, French, and Latin America</option>
+              {% endif %}
+			 {% if post.bookInfo.catagory.name == "Class G – Geography, Anthropology, Recreation"%}
+			  <option value="Class G – Geography, Anthropology, Recreation" selected = "selected">Class G – Geography, Anthropology, Recreation</option>
+			  {% else %}
+			   <option value="Class G – Geography, Anthropology, Recreation">Class G – Geography, Anthropology, Recreation</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class H – Social Sciences"%}
+              <option value="Class H – Social Sciences" selected = "selected">Class H – Social Sciences</option>
+			  {% else %}
+			      <option value="Class H – Social Sciences">Class H – Social Sciences</option>
+				   {% endif %}
+				{% if post.bookInfo.catagory.name == "Class J – Political Science"%}  
+              <option value="Class J – Political Science" selected = "selected">Class J – Political Science</option>
+			  {% else %}
+			  <option value="Class J – Political Science">Class J – Political Science</option>
+			   {% endif %}
+			  {% if post.bookInfo.catagory.name == "Class K – Law"%}
+              <option value="Class K – Law" selected = "selected">Class K – Law</option>
+			  {% else %}
+			    <option value="Class K – Law">Class K – Law</option>
+				 {% endif %}
+				{% if post.bookInfo.catagory.name == "Class L – Education"%}
+              <option value="Class L – Education" selected = "selected">Class L – Education</option>
+			  {% else %}
+			   <option value="Class L – Education">Class L – Education</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class M – Music"%}
+              <option value="Class M – Music" selected = "selected">Class M – Music</option>
+			  {% else %}
+			   <option value="Class M – Music">Class M – Music</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class N – Fine Arts"%}
+              <option value="Class N – Fine Arts" selected = "selected">Class N – Fine Arts</option>
+			  {% else %}
+			    <option value="Class N – Fine Arts">Class N – Fine Arts</option>
+				 {% endif %}
+				{% if post.bookInfo.catagory.name == "Class P – Language and Literature"%}
+              <option value="Class P – Language and Literature" selected = "selected">Class P – Language and Literature</option>
+			  {% else %}
+			  <option value="Class P – Language and Literature" >Class P – Language and Literature</option>
+			   {% endif %}
+			  {% if post.bookInfo.catagory.name == "Class Q – Science"%}
+              <option value="Class Q – Science" selected = "selected">Class Q – Science</option>
+			  {% else %}
+			   <option value="Class Q – Science">Class Q – Science</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class R – Medicine"%}
+              <option value="Class R – Medicine" selected = "selected">Class R – Medicine</option>
+			  {% else %}
+			   <option value="Class R – Medicine">Class R – Medicine</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class S – Agriculture"%}
+              <option value="Class S – Agriculture" selected = "selected">Class S – Agriculture</option>
+			  {% else %}
+			   <option value="Class S – Agriculture">Class S – Agriculture</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class T – Technology"%}
+              <option value="Class T – Technology" selected = "selected">Class T – Technology</option>
+			  {% else %}
+			   <option value="Class T – Technology">Class T – Technology</option>
+			    {% endif %}
+			   {% if post.bookInfo.catagory.name == "Class U – Military Science"%}
+              <option value="Class U – Military Science" selected = "selected">Class U – Military Science</option>
+			  {% else %}
+			    <option value="Class U – Military Science">Class U – Military Science</option>
+				 {% endif %}
+				{% if post.bookInfo.catagory.name == "Class V – Naval Science"%}
+              <option value="Class V – Naval Science" selected = "selected">Class V – Naval Science</option>
+			  {% else %}
+			       <option value="Class V – Naval Science">Class V – Naval Science</option>
+				    {% endif %}
+				   {% if post.bookInfo.catagory.name == "Class Z – Bibliography, Library Science"%}
+              <option value="Class Z – Bibliography, Library Science" selected = "selected">Class Z – Bibliography, Library Science</option>
+			  {% else %}
+			   <option value="Class Z – Bibliography, Library Science">Class Z – Bibliography, Library Science</option>
+				{% endif %}
+   </select>
+  </div>
+    <div class="form-group">
+    <label>Floor({{post.bookLocation.floor}})</label>
+     <select name = "floor" class="form-control">
+	 {% if post.bookLocation.floor == '1L' %}
+				 <option value="1L" selected = "selected">1L</option>
+		 {% else %}		 
+              <option value="1L">1L</option>
+		{% endif %}
+			{% if post.bookLocation.floor == '2L' %}
+              <option value="2L" selected = "selected">2L</option>
+		 {% else %}	  
+			   <option value="2L">2L</option>
+			{% endif %}  
+			 {% if post.bookLocation.floor == '3L' %}
+              <option value="3L" selected = "selected">3L</option>
+			 {% else %}  
+			   <option value="3L">3L</option>
+			 {% endif %} 
+			 {% if post.bookLocation.floor == '4L' %}
+              <option value="4L" selected = "selected">4L</option>
+			 {% else %}  
+			   <option value="4L">4L</option>
+			  {% endif %} 
+			  {% if post.bookLocation.floor == '5L' %}
+              <option value="5L" selected = "selected">5L</option>
+			  {% else %} 
+			   <option value="5L">5L</option>
+			  {% endif %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Area({{post.bookLocation.area}})</label>
+     <select name = "area" class="form-control">
+	 {% if post.bookLocation.area == 'East' %}
+	 <option value="East"  selected = "selected">East</option>
+	 {% else %}
+      <option value="East">East</option>
+	{% endif %}
+	{% if post.bookLocation.area == 'South' %}
+              <option value="South" selected = "selected">South</option>
+		 {% else %}	  
+			     <option value="South">South</option>
+		{% endif %}
+		{% if post.bookLocation.area == 'West' %}
+                <option value="West" selected = "selected">West</option>
+			{% else %}	 	
+			     <option value="West">West</option>
+			{% endif %}	
+			{% if post.bookLocation.area == 'North' %}
+              <option value="North" selected = "selected">North</option>
+			  {% else %}	
+			  <option value="North">North</option>
+			 {% endif %} 
+    </select>
+  </div>
+
+  
+            <button type="submit" class="save btn btn-primary">Save</button>
+			<input type="text" class="form-control"  value="{{post.bookInfo.book_image_URL}}" name="images_large_url" style="visibility:hidden">
+	<input type="text" class="form-control"  value="{{post.state}}" name="state" style="visibility:hidden">
+	<input type="text" class="form-control"  value="{{post.bookId}}" name="bookId" style="visibility:hidden">
+	<input type="text" class="form-control"  value="{{post.bookInfo.ISBN}}" name="isbn13" style="visibility:hidden">
+	<input type="text" class="form-control"  value="{{post.bookInfo.publishingHouse.name}}" name="publisher" style="visibility:hidden">	
+</form>
+
+        </form>
+
+  {% endblock %}

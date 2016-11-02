@@ -1,0 +1,65 @@
+{% if searchDict %}
+	<script type="text/javascript">
+		function pageLoad(num){
+			if (!isNaN(num))
+				var url = "?{% for key, value in searchDict.items %}{{key}}={{value}}&{% endfor %}"
+				location.href = url + "page=" + Math.floor(num);
+		}
+	</script>
+{% else %}
+	<script type="text/javascript">
+		function pageLoad(num){
+			if (!isNaN(num))
+				location.href = "?page=" + Math.floor(num);
+		}
+	</script>
+{% endif %}
+
+
+	{% if curPage.has_other_pages  %}
+			<div style = "text-align:right;">
+				<ul class="pagination" >
+					{% for page_number in pageList %}
+						{% if forloop.first %}
+							{% if page_number > 1 %}
+								<li><a href="javascript:void(0);" onclick="pageLoad(1)" > 1... </a></li>
+								
+							{% endif%}
+							
+							{% if curPage.has_previous %}
+								<li><a href="javascript:void(0);" onclick="pageLoad({{ curPage.previous_page_number }})" > < </a></li>
+							{% endif %}
+						{% endif%}
+						
+								{% if page_number == curPage.number %}
+							<li class="active">	<a>{{ page_number}}</a> </li>
+						{% else %}
+							<li><a href="javascript:void(0);" onclick="pageLoad({{page_number}})"> {{page_number}} </a> </li>
+						{% endif%}
+						
+						{% if forloop.last %}
+							{% if pageCount > 6 %}
+							<li><a style="color:black"><input id="pageInput" href="" onkeypress="if(event.keyCode==13)  return pageInputEnter()" type="text" style="vertical-align:middle; width:30px; height:18px">/{{pageCount}}P</a></li>
+								<script type="text/javascript">
+									function pageInputEnter(){
+										
+										var page = document.getElementById("pageInput").value;
+										if (isNaN(page) )
+											alert("page number input number.")
+										else
+											pageLoad(Math.floor(page));
+									}
+								</script>
+							{% endif %}
+							{% if curPage.has_next %}
+								<li><a href="javascript:void(0);" onclick="pageLoad({{ curPage.next_page_number }})" class="fa fa-play"> ></a></li>
+							{% endif %}
+							{% if page_number < pageCount %}
+								<li><a href="javascript:void(0);" onclick="pageLoad({{ pageCount }})"> ...{{pageCount}} </a></li>
+							{% endif %}
+						{% endif%}
+						
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}

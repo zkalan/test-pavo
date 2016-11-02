@@ -1,0 +1,57 @@
+{% extends 'search/searchResults.html' %} 
+
+{% block content %}
+<!-- booklist contains four attributes:bookId, title, location, state -->
+
+
+  <h2 class="sub-header">Search results</h2>
+        
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>PublishingHouse</th>
+                    <th>Library Collections</th>
+                    <th>Available copies</th>
+                </tr>
+            </thead>
+            
+	        <tbody >
+
+	        {% for book in results %}
+                <tr>
+        
+				   
+                    <td><a href="{% url 'book_detail_w' ISBN=book.ISBN %}">{{book.ISBN}}</a></td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.publishingHouse}}</td>
+                    <td>{{book.collections}}</td>
+                    <td>{{book.available}}</td>
+
+                    <!--<td>
+                        {% if book.state == 'in' %} in {% else %} out {% endif %}
+                    </td>-->
+                </tr>
+           
+            {% endfor %} 
+			 </tbody>
+        </table>
+
+	<p><font color="red">{{empty_message}}</font></p>
+
+
+<script language="javascript" type="text/javascript"> 
+window.onload = function(){ 
+    var oTable = document.getElementById("tab"); 
+    for(var i=0;i<oTable.rows.length;i++){ 
+        oTable.rows[i].cells[0].innerHTML = (i+1); 
+    } 
+   record.innerHTML=oTable.rows.length; 
+} 
+</script>
+{% include 'paginate/paginate.html' %}
+{% endblock %}

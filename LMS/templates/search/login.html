@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<!-- saved from url=(0038)http://v3.bootcss.com/examples/signin/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="{% static 'photo/favicon.ico' %}">
+
+  <title>log in</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/login.css' %}" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="text-decoration:underline"><a href="{% url 'searchIndex' %}"><em> Return to the home page</em></a></span>
+  <div class="container">
+
+    <form action = "" method = "POST" class="form-signin" role="form" >
+      {% csrf_token %}
+      <h2 class="form-signin-heading">Log in</h2>
+
+      <select name = "select" class="form-control">
+        <option value="1">Admin</option>
+        <option value="2">Front Desk Librarian</option>
+        <option value="3">Stack Librarian</option>
+        <option value="4">Member</option>
+      </select>
+
+      <label>account</label>
+      <input type="text" name = "account" class="form-control" placeholder="Account" required="" autofocus="autofocus">
+
+      <p><font color="red"> {{error_message1}} </font></p>
+
+      <label>password</label>
+      <input type="password" name = "password" class="form-control" placeholder="Password" required="">
+
+       <p><font color="red"> {{error_message2}} </font></p>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+
+       <p><font color="red"> {{message}} </font></p>
+    </form>
+
+
+  </div>
+  <!-- /container -->
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+
+
+  <div id="cntvlive2-is-installed"></div>
+</body>
+
+</html>

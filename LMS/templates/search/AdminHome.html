@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<!-- saved from url=(0041)http://v3.bootcss.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://v3.bootcss.com/examples/dashboard/#">Pavo member</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://v3.bootcss.com/examples/dashboard/#">Tom</a></li>
+
+          </ul>
+
+          <form class="navbar-form navbar-right">
+            <input class="form-control" placeholder="Search..." type="text">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="http://v3.bootcss.com/examples/dashboard/#">My Activity</a></li>            
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="Basic Information">Basic Information</a></li>            
+          </ul>
+          
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          
+
+          
+		
+		  <h2 class="sub-header">Current Borrowing</h2>
+          <div class="table-responsive">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>                  
+                  <th>ISBN</th>
+                  <th>Book Name</th>
+                  <th>Authors</th>
+                  <th>CategoryName</th>
+                  <th>PublisherName</th>                  
+				  <th>BorrowDate</th>
+				  <th>DueReturnDate</th>
+				  <th>Fine</th>
+				  <th>View</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>                  
+				  <td>1,0010000</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+				  <td>elit</td>
+                  <td>dolor</td>
+				  <td>2016/9/10</td>
+				  <td>2016/10/10</td>
+				  <td>0.00</td>
+				  <td>link</td>
+                </tr>
+                <tr>
+				  <td>1,0020000</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+				  <td>elit</td>
+                  <td>adipiscing</td>
+				  <td>2016/9/10</td>
+				  <td>2016/10/10</td>
+				  <td>0.00</td>
+				  <td>link</td>
+                </tr>
+                
+              </tbody>
+            </table>
+		  </div>
+		  
+          <h2 class="sub-header">History Borrowing</h2>
+          <div class="table-responsive">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>                  
+                  <th>ISBN</th>
+                  <th>Book Name</th>
+                  <th>Authors</th>
+                  <th>CategoryName</th>
+                  <th>PublisherName</th>
+				  <th>BorrowDate</th>
+				  <th>ReturnedDate</th>
+				  <th>Fine</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+				  <td>1,0010000</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+				  <td>1</td>
+                  <td>2014/9/10</td>
+                  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>2</td>
+				  <td>1,0020000</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0030000</td>
+				  <td>1,0030000</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0000000</td>
+				  <td>1,0000000</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0040000</td>
+				  <td>1,0000000</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0050000</td>
+				  <td>1,0000000</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0060000</td>
+				  <td>1,0000000</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0070000</td>
+				  <td>1,0000000</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>
+				  <td>30.02</td>				  
+                </tr>
+                <tr>
+                  <td>1,0080000</td>
+				  <td>1,0000000</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0090000</td>
+				  <td>1,0000000</td>
+                  <td>augue</td>
+                  <td>semper</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0100000</td>
+				  <td>1,0000000</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0110000</td>
+				  <td>1,0000000</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0120000</td>
+				  <td>1,0000000</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0130000</td>
+				  <td>1,0000000</td>
+                  <td>torquent</td>
+                  <td>per</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0140000</td>
+				  <td>1,0000000</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+                <tr>
+                  <td>1,0150000</td>
+				  <td>1,0000000</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+				  <td>1</td>
+				  <td>2014/9/10</td>
+				  <td>2015/8/22</td>                  
+				  <td>30.02</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/jquery.min.js"></script>
+    <script src="./Dashboard Template for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="./Dashboard Template for Bootstrap_files/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./Dashboard Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+  
+
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" title="" data-original-title="Copy to clipboard">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%" height="100%">         <param name="movie" value="/assets/flash/ZeroClipboard.swf?noCache=1473869735288">         <param name="allowScriptAccess" value="sameDomain">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="trustedOrigins=v3.bootcss.com%2C%2F%2Fv3.bootcss.com%2Chttp%3A%2F%2Fv3.bootcss.com">         <embed src="/assets/flash/ZeroClipboard.swf?noCache=1473869735288" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="trustedOrigins=v3.bootcss.com%2C%2F%2Fv3.bootcss.com%2Chttp%3A%2F%2Fv3.bootcss.com" scale="exactfit">                </object></div><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" preserveAspectRatio="none" style="visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs></defs><text x="0" y="10" style="font-weight:bold;font-size:10pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle">200x200</text></svg></body></html>
